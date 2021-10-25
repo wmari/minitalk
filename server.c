@@ -6,7 +6,7 @@
 /*   By: wmari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 13:00:53 by wmari             #+#    #+#             */
-/*   Updated: 2021/10/25 18:11:55 by wmari            ###   ########.fr       */
+/*   Updated: 2021/10/25 18:44:39 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	write_pid(pid_t pid)
 
 void	write_char(int sig)
 {
-	static char	c;
-	static int	i;
+	static char	c = 0;
+	static int	i = 0;
 
-	i++;
+	c <<= 1;
 	if (sig == SIGUSR1)
 		c = c | 1;
-	c <<= 1;
+	i++;
 	if (i == 8)
 	{
 		write(1, &c, 1);

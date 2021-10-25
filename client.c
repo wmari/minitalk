@@ -6,7 +6,7 @@
 /*   By: wmari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 15:50:06 by wmari             #+#    #+#             */
-/*   Updated: 2021/10/25 18:10:02 by wmari            ###   ########.fr       */
+/*   Updated: 2021/10/25 18:40:08 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ void	send_char(char c, int pid)
 	i = 7;
 	while (i >= 0)
 	{
-		if (((c >> i) & 1)	== 1)
+		if ((c >> i) & 1)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid,SIGUSR2);
-		usleep(250);
+		usleep(1000);
 		i--;
 	}
 }
