@@ -6,7 +6,7 @@
 /*   By: wmari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 15:50:06 by wmari             #+#    #+#             */
-/*   Updated: 2021/10/26 14:16:11 by wmari            ###   ########.fr       */
+/*   Updated: 2021/10/26 14:37:17 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 int	ft_atoi(const char *str)
 {
-	int					sign;
-	unsigned	int		ret;
+	int				sign;
+	unsigned int	ret;
 
 	ret = 0;
 	sign = 1;
-	while (*str == '\t' || *str == '\n' || *str == '\r' ||
-		*str == '\v' || *str == '\f' || *str == ' ')
+	while (*str == '\t' || *str == '\n' || *str == '\r'
+		|| *str == '\v' || *str == '\f' || *str == ' ')
 		str++;
 	if (*str == '+' || *str == '-')
 	{
@@ -40,7 +40,7 @@ int	ft_atoi(const char *str)
 int	main(int argc, char **argv)
 {
 	int	i;
-	int pid;
+	int	pid;
 	int	j;
 
 	if (argc != 3)
@@ -55,7 +55,7 @@ int	main(int argc, char **argv)
 			if ((argv[2][i] >> j) & 1)
 				kill(pid, SIGUSR1);
 			else
-				kill(pid,SIGUSR2);
+				kill(pid, SIGUSR2);
 			usleep(100);
 			j--;
 		}
