@@ -6,7 +6,7 @@
 /*   By: wmari <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 15:50:06 by wmari             #+#    #+#             */
-/*   Updated: 2021/10/25 18:40:08 by wmari            ###   ########.fr       */
+/*   Updated: 2021/10/26 14:16:11 by wmari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,11 @@ int	ft_atoi(const char *str)
 	return (ret * sign);
 }
 
-void	send_char(char c, int pid)
-{
-	int	i;
-
-	i = 7;
-	while (i >= 0)
-	{
-		if ((c >> i) & 1)
-			kill(pid, SIGUSR1);
-		else
-			kill(pid,SIGUSR2);
-		usleep(1000);
-		i--;
-	}
-}
 int	main(int argc, char **argv)
 {
 	int	i;
 	int pid;
+	int	j;
 
 	if (argc != 3)
 		return (1);
@@ -63,7 +49,16 @@ int	main(int argc, char **argv)
 	pid = ft_atoi(argv[1]);
 	while (argv[2][i] != 0)
 	{
-		send_char(argv[2][i], pid);
+		j = 7;
+		while (j >= 0)
+		{
+			if ((argv[2][i] >> j) & 1)
+				kill(pid, SIGUSR1);
+			else
+				kill(pid,SIGUSR2);
+			usleep(100);
+			j--;
+		}
 		i++;
 	}
 	return (0);
